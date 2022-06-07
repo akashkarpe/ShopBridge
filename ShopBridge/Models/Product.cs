@@ -21,7 +21,7 @@ namespace Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if ( Math.Abs(Price) < 0)
+            if ( Price < 0)
             {
                 yield return new ValidationResult("Price is Invalid");
             }

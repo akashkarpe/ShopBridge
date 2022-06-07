@@ -72,10 +72,19 @@ namespace ShopBridge.Controllers
             Response res = new Response();
             try
             {
-                var result = productMaster.UpdateProduct(product);
-                res.Data = result;
-                res.Status = "S";
-                res.Message = "Success";
+                if (ModelState.IsValid)
+                {
+                    var result = productMaster.UpdateProduct(product);
+                    res.Data = result;
+                    res.Status = "S";
+                    res.Message = "Success";
+                }
+                else
+                {
+                    res.Data = ModelState.Values.ToList();
+                    res.Status = "F";
+                    res.Message = "Validation Failed";
+                }
             }
             catch (Exception ex)
             {
